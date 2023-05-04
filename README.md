@@ -1,3 +1,3 @@
-# iDenfySDKPackage
+# iDenfySDK pacakge for SPM
 
-A description of this package.
+Full documentation of iDenfy SDK: https://documentation.idenfy.com/mobile/iOS/ios-sdk
