@@ -10,8 +10,6 @@ enum Checksums {
     static let idenfyviewsChecksum = "b52cb78e688be64b08ca00003e6e07fe151d51588b8d877ea3561dbab20540db"
     static let iDenfySDKChecksum = "98b89c6df329a69d6dba5d4ddc6186f8dd148097f07783fa790bd8ea1d8c5751"
     static let idenfycoreChecksum = "cb4ab887cbe9ddac27d1d31eef9985b78a08cb9ec27de5d4925c782278845dd0"
-    static let idenfyNFCReadingChecksum = "65d61f0432e2123f12cecc92f93986f4eb7125e613c4205e55209664bd2e4221"
-    static let openSSLChecksum = "2cd0a6c01de539027a0f24bb0745d9c78d7d61a3e54465bff9b354aeb43d1a13"
 }
 
 let package = Package(
@@ -52,25 +50,6 @@ let package = Package(
             ],
             path: "idenfyviewsWrapper"
         ),
-        //IdenfyNFCReading
-        .target(
-            name: "idenfyNFCReadingTarget",
-            dependencies: [.target(name: "idenfyNFCReadingWrapper",
-                                   condition: .when(platforms: [.iOS]))],
-            path: "SwiftPM-PlatformExclude/idenfyNFCReadingWrap"
-        ),
-        .target(
-            name: "idenfyNFCReadingWrapper",
-            dependencies: [
-                .target(
-                    name: "idenfyNFCReading",
-                    condition: .when(platforms: [.iOS])
-                ),
-                .target(name: "OpenSSL",
-                        condition: .when(platforms: [.iOS])),
-            ],
-            path: "idenfyNFCReadingWrapper"
-        ),
         //iDenfySDK
         .target(
             name: "iDenfySDKTarget",
@@ -94,8 +73,6 @@ let package = Package(
                         condition: .when(platforms: [.iOS])),
                 .target(name: "iDenfyInternalLogger",
                         condition: .when(platforms: [.iOS])),
-                .target(name: "idenfyNFCReadingTarget",
-                        condition: .when(platforms: [.iOS])),
                 .target(name: "idenfyviewsTarget",
                         condition: .when(platforms: [.iOS])),
             ],
@@ -110,9 +87,5 @@ let package = Package(
                       url: "https://s3.eu-west-1.amazonaws.com/sdk.builds/ios-sdk/\(version)/spm/IdenfySDK/iDenfySDK.zip", checksum: Checksums.iDenfySDKChecksum),
         .binaryTarget(name: "idenfycore",
                       url: "https://s3.eu-west-1.amazonaws.com/sdk.builds/ios-sdk/\(version)/spm/IdenfySDK/idenfycore.zip", checksum: Checksums.idenfycoreChecksum),
-        .binaryTarget(name: "idenfyNFCReading",
-                      url: "https://s3.eu-west-1.amazonaws.com/sdk.builds/ios-sdk/\(version)/spm/IdenfySDK/idenfyNFCReading.zip", checksum: Checksums.idenfyNFCReadingChecksum),
-        .binaryTarget(name: "OpenSSL",
-                      url: "https://s3.eu-west-1.amazonaws.com/sdk.builds/ios-sdk/\(version)/spm/IdenfySDK/OpenSSL.zip", checksum: Checksums.openSSLChecksum),
     ]
 )
